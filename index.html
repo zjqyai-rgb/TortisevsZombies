@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0d4f7a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Turtles vs Zombies</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Shown on phones held upright -->
+  <div id="rotateHint">
+    <div class="rotate-phone"></div>
+    <h2>Turn your phone sideways</h2>
+    <p>Turtles vs Zombies plays best in <b>landscape mode</b>. Rotate your phone for the full beach!</p>
+    <p style="font-size:13px;opacity:.75">Tip: turn off rotation lock if the screen doesn't turn.</p>
+    <button id="rotateDismiss" class="ghost">Play in portrait anyway</button>
+  </div>
+  <div id="app">
+    <!-- Main menu / level select -->
+    <div id="menu" class="screen">
+      <div class="title-wrap">
+        <canvas id="titleArt" width="600" height="150"></canvas>
+        <h1>Turtles <span>vs</span> Zombies</h1>
+        <p class="subtitle">Defend the turtle nesting beach and the coral reef nursery from the zombie tide!</p>
+      </div>
+      <div id="levelGrid"></div>
+      <div class="menu-buttons">
+        <button id="almanacBtn">📖 Almanac</button>
+        <button id="resetBtn" class="ghost">Reset progress</button>
+      </div>
+      <div class="howto">
+        <h3>How to play</h3>
+        <ul>
+          <li>Click floating <b>pearls</b> to collect them. Pearls pay for turtles.</li>
+          <li>Pick a turtle card (or press <kbd>1</kbd>–<kbd>8</kbd>), then click a tile to place it.</li>
+          <li>Zombies march in from the sea. Stop them before they reach the nest on the left!</li>
+          <li>Each lane has one <b>crab</b> as a last line of defence. It sweeps the lane once.</li>
+          <li><kbd>S</kbd> shovel · <kbd>P</kbd>/<kbd>Space</kbd> pause · <kbd>Esc</kbd> cancel · right-click cancel</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Almanac -->
+    <div id="almanac" class="screen hidden">
+      <div class="almanac-head"><button id="almanacBack">◀ Back</button><h2>Almanac</h2></div>
+      <h3>Turtles</h3>
+      <div id="almanacTurtles" class="entries"></div>
+      <h3>Zombies</h3>
+      <div id="almanacZombies" class="entries"></div>
+    </div>
+
+    <!-- Game -->
+    <div id="gameScreen" class="screen hidden">
+      <div id="topbar">
+        <div id="pearlBox"><canvas id="pearlIcon" width="36" height="36"></canvas><span id="pearlCount">0</span></div>
+        <div id="cards"></div>
+        <button id="shovelBtn" class="tool" title="Shovel (S) — remove a turtle">
+          <svg viewBox="0 0 40 40" width="34" height="34"><path d="M30 4 l6 6 -12 12 -3 -3z" fill="#8b5a2b"/><path d="M8 22 l10 10 -6 6 c-4 2 -10 -4 -8 -8z" fill="#b0bec5" stroke="#546e7a" stroke-width="2"/><path d="M15 25 l7 -7 3 3 -7 7z" fill="#78909c"/></svg>
+        </button>
+        <div class="controls">
+          <button id="speedBtn" title="Game speed (1x / 2x / 3x)">1x</button>
+          <button id="pauseBtn" title="Pause (P)">❚❚</button>
+          <button id="muteBtn" title="Sound">🔊</button>
+          <button id="menuBtn" title="Menu">☰</button>
+        </div>
+      </div>
+      <div id="stage">
+        <canvas id="game" width="1000" height="600"></canvas>
+        <div id="overlay" class="hidden"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
